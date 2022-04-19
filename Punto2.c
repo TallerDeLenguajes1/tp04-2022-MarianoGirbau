@@ -9,11 +9,12 @@ struct Tarea {
     int Duracion; // entre 10 – 100
 }typedef Tarea;
 
-void cargarTareas (Tarea **Tareas, int cantTareas);
+void cargarTareas(Tarea **Tareas, int cantTareas);
+void mostrarTareas(Tarea **Tareas,Tarea **tareasRealizadas, int cantTareas);
 
 int main (){
     int cantTareas;
-    Tarea **Tareas;
+    Tarea **Tareas,**tareasRealizadas;
 
     do
     {
@@ -25,12 +26,12 @@ int main (){
     Tareas = (Tarea **) malloc(sizeof(Tarea*)*cantTareas);
 
     cargarTareas(Tareas,cantTareas);
-
+    mostrarTareas(**Tareas,**tareasRealizadas,catnTareas)
     free(Tareas);
     return 0;
 }
 
-void cargarTareas (Tarea **Tareas, int cantTareas)
+void cargarTareas(Tarea **Tareas, int cantTareas)
 {
     char *buff = (char *) malloc (100*sizeof(char));
 
@@ -49,4 +50,15 @@ void cargarTareas (Tarea **Tareas, int cantTareas)
     free(buff);
     
 
+}
+
+void mostrarTareas(Tarea **Tareas,Tarea **tareasRealizadas, int cantTareas)
+{
+    int realizado;
+    for (int j = 0; j < cantTareas; j++)
+    {
+        printf("\n ID %d",(*(Tareas+i))->TareaID);
+        printf("\n Descripcion: %s",(*(Tareas+i))->Duracion));
+    }
+    
 }
