@@ -10,6 +10,7 @@ struct Tarea {
 }typedef Tarea;
 
 void cargarTareas(Tarea **Tareas, int cantTareas);
+void realizarTareas(Tarea **Tareas,Tarea **tareasRealizadas, int cantTareas);
 void mostrarTareas(Tarea **Tareas,Tarea **tareasRealizadas, int cantTareas);
 
 int main (){
@@ -26,7 +27,7 @@ int main (){
     Tareas = (Tarea **) malloc(sizeof(Tarea*)*cantTareas);
 
     cargarTareas(Tareas,cantTareas);
-    mostrarTareas(**Tareas,**tareasRealizadas,catnTareas)
+    realizarTareas(Tareas,tareasRealizadas,cantTareas);
     free(Tareas);
     return 0;
 }
@@ -43,7 +44,7 @@ void cargarTareas(Tarea **Tareas, int cantTareas)
         gets(buff);
         (*(Tareas+i))->Descripcion = (char *) malloc ((strlen(buff)+1)*sizeof(char));
         strcpy((*(Tareas+i))->Descripcion,buff);
-        printf("\n Ingrese cuanto dura la tarea: ");
+        printf("\n Ingrese cuanto dura la tarea (en horas): ");
         scanf("%d",&(*(Tareas+i))->Duracion);
         fflush(stdin);   
     }
@@ -52,13 +53,34 @@ void cargarTareas(Tarea **Tareas, int cantTareas)
 
 }
 
-void mostrarTareas(Tarea **Tareas,Tarea **tareasRealizadas, int cantTareas)
+void realizarTareas(Tarea **Tareas,Tarea **tareasRealizadas, int cantTareas)
 {
     int realizado;
     for (int j = 0; j < cantTareas; j++)
     {
-        printf("\n ID %d",(*(Tareas+i))->TareaID);
-        printf("\n Descripcion: %s",(*(Tareas+i))->Duracion));
+        printf("\n ID %d",(*(Tareas+j))->TareaID);
+        printf("\n Descripcion: %s",(*(Tareas+j))->Descripcion);
+        printf("\n Duracion: %i horas",(*(Tareas+j))->Duracion);
+        printf("\n====================================");
+        printf("¿Ya se realizó la tarea? \n 0.No \n1.Si");
+        scanf("%i",&realizado);
+        if (realizado=1)
+        {
+            *(tareasRealizadas+j)=*(Tareas+j);
+            *(Tareas+j)=NULL;
+        }else{
+            *(tareasRealizadas+j)=NULL;
+        }
+        
+    }
+    
+}
+
+void mostrarTareas(Tarea **Tareas,Tarea **tareasRealizadas, int cantTareas)
+{
+    for (int i = 0; i < cantTareas; i++)
+    {
+        /* code */
     }
     
 }
